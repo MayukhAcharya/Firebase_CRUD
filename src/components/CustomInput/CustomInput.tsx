@@ -22,7 +22,6 @@ const CustomInput = forwardRef(
     ref: any
   ) => {
     const currentStyles = styles();
-    console.log("rendered");
     return (
       <View style={[currentStyles.mainContainer, allStyle]}>
         <Text style={currentStyles.labelTextStyle}>{label}</Text>
