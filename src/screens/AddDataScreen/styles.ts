@@ -17,4 +17,9 @@ export const styles = () =>
       alignItems: "center",
       rowGap: normalize(10),
     },
+    bottomContainer: {
+      marginTop: normalize(20),
+      alignItems: "center",
+      rowGap: normalize(20),
+    },
   });

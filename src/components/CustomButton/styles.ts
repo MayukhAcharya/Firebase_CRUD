@@ -16,4 +16,14 @@ export const styles = () =>
       color: "#fff",
       fontSize: normalize(14),
     },
+    buttonstyleDisabled: {
+      width: normalize(150),
+      backgroundColor: "#4c9",
+      height: normalize(40, "height"),
+      borderRadius: normalize(10),
+      justifyContent: "center",
+      alignItems: "center",
+      elevation: 10,
+      opacity: 0.5,
+    },
   });
