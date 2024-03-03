@@ -5,13 +5,16 @@ import {
   TouchableOpacity,
   Alert,
   ActivityIndicator,
+  Modal,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { styles } from "src/screens/ViewDeleteDataScreen/styles";
 import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
 import { fire_db } from "src/config/firebaseConfig";
+import UpdateModal from "src/components/UpdateModal/UpdateModal";
 
 type dataProps = {
   name: string;
@@ -24,7 +27,9 @@ type dataProps = {
 const ViewDeleteDataScreen = () => {
   const currentStyles = styles();
   const [data, setData] = useState<dataProps[]>([]);
+  const [modalData, setModalData] = useState<dataProps>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -94,6 +99,18 @@ const ViewDeleteDataScreen = () => {
               <View style={currentStyles.rightContainer}>
                 <TouchableOpacity
                   onPress={() => {
+                    setModalData(item);
+                    setShowModal(true);
+                  }}
+                >
+                  <MaterialCommunityIcons
+                    name="update"
+                    size={24}
+                    color="black"
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
                     Alert.alert("", "Are You Sure?", [
                       {
                         text: "No",
@@ -130,6 +147,26 @@ const ViewDeleteDataScreen = () => {
           );
         }}
       />
+      {showModal ? (
+        <>
+          <Modal
+            visible={showModal}
+            animationType="slide"
+            transparent={true}
+            statusBarTranslucent
+            onRequestClose={() => setShowModal(false)}
+          >
+            <UpdateModal
+              onClose={() => setShowModal(false)}
+              stuName={modalData.name}
+              department={modalData.department}
+              collegeRoll={modalData.collegeRoll}
+              universityRoll={modalData.universityRoll.toString()}
+              id={modalData.id}
+            />
+          </Modal>
+        </>
+      ) : null}
     </View>
   );
 };

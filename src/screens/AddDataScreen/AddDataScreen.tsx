@@ -23,10 +23,10 @@ const AddDataScreen = () => {
   const [uniRoll, setUniRoll] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const addDataMethod = () => {
+  const addDataMethod = async () => {
     setIsLoading(true);
     try {
-      const doc = addDoc(collection(fire_db, "collegeData"), {
+      await addDoc(collection(fire_db, "collegeData"), {
         name: name,
         department: dept,
         collegeRoll: roll,
@@ -64,7 +64,7 @@ const AddDataScreen = () => {
       <View style={currentStyles.textinputContainer}>
         <CustomInput
           label="Name"
-          allStyle={{ width: normalize(320) }}
+          allStyle={currentStyles.textinputWidth}
           onChangeText={(text) => {
             setName(text);
           }}
@@ -73,7 +73,7 @@ const AddDataScreen = () => {
         />
         <CustomInput
           label="Department"
-          allStyle={{ width: normalize(320) }}
+          allStyle={currentStyles.textinputWidth}
           onChangeText={(text) => {
             setDept(text);
           }}
@@ -82,7 +82,7 @@ const AddDataScreen = () => {
         />
         <CustomInput
           label="College Roll Number"
-          allStyle={{ width: normalize(320) }}
+          allStyle={currentStyles.textinputWidth}
           onChangeText={(text) => {
             setRoll(text);
           }}
@@ -91,7 +91,7 @@ const AddDataScreen = () => {
         />
         <CustomInput
           label="University Roll Number"
-          allStyle={{ width: normalize(320) }}
+          allStyle={currentStyles.textinputWidth}
           onChangeText={(text) => {
             setUniRoll(text);
           }}
