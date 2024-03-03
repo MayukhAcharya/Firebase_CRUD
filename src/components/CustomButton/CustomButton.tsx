@@ -1,4 +1,12 @@
-import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+  StyleProp,
+  ViewProps,
+  ViewStyle,
+} from "react-native";
 import React from "react";
 
 import { styles } from "src/components/CustomButton/styles";
@@ -8,13 +16,17 @@ type buttonProps = {
   onPress?: () => void;
   isLoading?: boolean;
   disabled?: boolean;
+  style?: StyleProp<ViewStyle>;
 };
 
 const CustomButton = (props: buttonProps) => {
-  const { label, onPress, isLoading = false, disabled = false } = props;
+  const { label, onPress, isLoading = false, disabled = false, style } = props;
   const currentStyles = styles();
   return !disabled ? (
-    <TouchableOpacity style={currentStyles.buttonstyle} onPress={onPress}>
+    <TouchableOpacity
+      style={[currentStyles.buttonstyle, style]}
+      onPress={onPress}
+    >
       {isLoading ? (
         <>
           <ActivityIndicator size="small" color="white" />
@@ -25,7 +37,7 @@ const CustomButton = (props: buttonProps) => {
     </TouchableOpacity>
   ) : (
     <TouchableOpacity
-      style={currentStyles.buttonstyleDisabled}
+      style={[currentStyles.buttonstyleDisabled, style]}
       onPress={onPress}
       disabled={true}
     >

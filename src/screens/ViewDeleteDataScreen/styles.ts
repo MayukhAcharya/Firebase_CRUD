@@ -33,9 +33,11 @@ export const styles = () =>
       justifyContent: "space-between",
     },
     rightContainer: {
-      justifyContent: "center",
-      alignItems: "flex-end",
+      justifyContent: "flex-end",
+      alignItems: "center",
       flex: 1,
+      flexDirection: "row",
+      columnGap: normalize(10),
     },
     emptyFieldStyle: {
       justifyContent: "center",

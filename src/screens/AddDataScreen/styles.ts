@@ -22,4 +22,7 @@ export const styles = () =>
       alignItems: "center",
       rowGap: normalize(20),
     },
+    textinputWidth: {
+      width: normalize(320),
+    },
   });
